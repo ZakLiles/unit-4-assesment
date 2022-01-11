@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back End Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="container">
+    <header>
+      <button id="complimentButton">Get a compliment</button>
+      <button id="fortuneButton">Get a fortune</button>
+    </header>
+    <main>
+      <form>
+        <input type='text' id="vehicle-name" placeholder="What's the vehicles name"/>
+        <input type='text' id="vehicle-price" placeholder='What is the price?'/>
+        <select id="type">
+          <option value="" disabled selected>Select Vehicle Type</option>
+          <option value="motorcycle">Motorcycle</option>
+          <option value="car">Car</option>
+        </select>
+        <input type='text' id="vehicle-img" placeholder='Paste an image URL'/>
+        <button>add vehicle</button>
+      </form>
+      
+      <section id="vehicles-container"></section>
+    </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

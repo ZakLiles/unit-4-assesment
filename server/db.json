@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "name": "Yamaha MT-10",
+      "price": 16899,
+      "imageURL" : "https://www.bikes4sale.com/pictures/default/yamaha-mt-10-sp/yamaha-mt-10-sp-640.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Kawasaki Z H2",
+      "price": 18000,
+      "imageURL" : "https://content2.kawasaki.com/ContentStorage/KMC/Products/8519/c4bfb085-fdda-4961-980c-a4139c3e93c4.png?w=767"
+    },
+    {
+      "id": 3,
+      "name": "Tesla Model S",
+      "price": 123990,
+      "imageURL" : "https://media.ed.edmunds-media.com/tesla/model-s/2018/oem/2018_tesla_model-s_sedan_p100d_fq_oem_1_1600.jpg"
+    }
+  ]
