@@ -28,6 +28,9 @@ module.exports = {
           
             res.status(200).send(randomFortune);
     },
+    getVehicles: (req, res) => {  
+            res.status(200).send(vehicles);
+    },
     createVehicle: (req, res) => {
         let {name, price, imageURL} = req.body;
         let newVehicle = {
@@ -41,9 +44,21 @@ module.exports = {
         globalId++;
     },
     updateVehicle: (req, res) => {
+        let {id} = req.params;
+        let {type} = req.body;
+        let index = vehicles.findIndex((elem) => elem.id === +req.params.id);
 
+        if(type === "plus") {
+            vehicles[index].price+=1000;
+            res.status(200).send(vehicles);
+        } else if(type === "minus"){
+            vehicles[index].price-=1000;
+            res.status(200).send(vehicles);
+        }
     },
     deleteVehicle: (req, res) => {
-
+        let index = vehicles.findIndex((elem) => elem.id === +req.params.id);
+        vehicles.splice(index, 1);
+        res.status(200).send(vehicles);
     },
 }

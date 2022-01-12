@@ -8,12 +8,13 @@ app.use(cors());
 
 app.use(express.json()); // When we want to be able to accept JSON.
 
-const {getCompliment, getFortune, updateVehicle, createVehicle, deleteVehicle} = require('./controller');
+const {getCompliment, getFortune, getVehicles, updateVehicle, createVehicle, deleteVehicle} = require('./controller');
 
 app.get("/api/compliment", getCompliment);
 app.get("/api/fortune", getFortune);
-app.post('/api/vehicle', createVehicle);
-app.put('/api/vehicle', updateVehicle);
-app.delete('/api/vehicle', deleteVehicle);
+app.get('/api/vehicles', getVehicles)
+app.post('/api/vehicles', createVehicle);
+app.put('/api/vehicles/:id', updateVehicle);
+app.delete('/api/vehicles/:id', deleteVehicle);
 
 app.listen(4000, () => console.log("Server running on 4000"));

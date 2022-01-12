@@ -3,17 +3,18 @@ const fortuneButton = document.getElementById("fortuneButton");
 const form = document.querySelector('form');
 const vehiclesContainer = document.querySelector('#vehicles-container');
 
-const baseURL ="http://localhost:4000/api/"
+const baseURL ="http://localhost:4000/api"
 
 const vehicleCallback = ({ data: vehicles }) => displayVehicles(vehicles)
 const errCallback = err => console.log(err);
 
-const getCompliment = () => axios.get(`${baseURL}compliment`).then((response) => alert(response.data));
-const getFortune = () => axios.get(`${baseURL}fortune`).then((response) => alert(response.data)); 
-const complimentHandler = event => getCompliment();
-const fortuneHandler = event => getFortune();
+const getCompliment = () => axios.get(`${baseURL}/compliment`).then((response) => alert(response.data));
+const getFortune = () => axios.get(`${baseURL}/fortune`).then((response) => alert(response.data)); 
 
-const createVehicle = body => axios.post(`${baseURL}vehicle`, body).then(vehicleCallback).catch(errCallback)
+const getAllVehicles = () => axios.get(`${baseURL}/vehicles`).then(vehicleCallback).catch(errCallback)
+const createVehicle = body => axios.post(`${baseURL}/vehicles`, body).then(vehicleCallback).catch(errCallback)
+const deleteVehicle = id => axios.delete(`${baseURL}/vehicles/${id}`).then(vehicleCallback).catch(errCallback)
+const updateVehicle = (id, type) => axios.put(`${baseURL}/vehicles/${id}`, {type}).then(vehicleCallback).catch(errCallback)
 
 function submitHandler(e) {
     console.log('Submit clicked')
@@ -41,13 +42,13 @@ function createVehicleCard(vehicle) {
     vehicleCard.classList.add('vehicle-card')
 
     vehicleCard.innerHTML = `<img alt='vehicle cover image' src=${vehicle.imageURL} class="vehicle-cover-image"/>
-    <p class="address">${vehicle.address}</p>
+    <p class="name">${vehicle.name}</p>
     <div class="btns-container">
         <button onclick="updateVehicle(${vehicle.id}, 'minus')">-</button>
         <p class="vehicle-price">$${vehicle.price}</p>
-        <button onclick="vehicleHouse(${vehicle.id}, 'plus')">+</button>
+        <button onclick="updateVehicle(${vehicle.id}, 'plus')">+</button>
     </div>
-    <button onclick="vehicleHouse(${vehicle.id})">delete</button>
+    <button onclick="deleteVehicle(${vehicle.id})">delete</button>
     `
 
 
@@ -62,5 +63,7 @@ function displayVehicles(arr) {
 }
 
 form.addEventListener('submit', submitHandler)
-complimentButton.addEventListener('click', complimentHandler)
-fortuneButton.addEventListener('click', fortuneHandler)
+complimentButton.addEventListener('click', getCompliment)
+fortuneButton.addEventListener('click', getFortune)
+
+getAllVehicles();
